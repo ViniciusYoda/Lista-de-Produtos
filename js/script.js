@@ -1,17 +1,56 @@
 class Produto {
 
    constructor() {
-      this.id = 0
-      this.nomeProduto = '';
-      this.valor = 0;
+      this.id = 1
+      this.arrayProdutos = []
    }
 
-   adicionar() {
-      alert('Vamos adicionar')
+   salvar() {
+      let produto = this.lerDados();
+
+      if(this.validaCampo(produto)) {
+         this.adicionar(produto);
+      }
+
+      console.log(this.arrayProdutos);
    }
 
-   excluir() {
-      alert('Item deletado')
+   adicionar(produto) {
+      this.arrayProdutos.push(produto);
+      this.id++;
+   }
+
+   lerDados() {
+      let produto = {}
+
+      produto.id = this.id;
+      produto.nomeProduto = document.getElementById("produto").value;
+      produto.preco = document.getElementById("preco").value;
+
+      return produto;
+   }
+
+   validaCampo(produto) {
+      let msg = '';
+
+      if(produto.nomeProduto == '') {
+         msg += 'Informe o nome do produto \n';
+      }
+
+      if (produto.preco == '') {
+         msg += 'Informe o preço do produto \n';
+      }
+
+      if (msg != '') {
+         alert(msg);
+         return false;
+      }
+
+      return true;
+   }
+
+   cancelar() {
+
    }
 }
 
